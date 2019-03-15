@@ -1,0 +1,709 @@
+#include<iostream.h>
+		#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<fstream.h>
+#include<graphics.h>
+#include<dos.h>
+struct DATE
+{
+int dd,Dd;
+int mm,Mm;
+int yy,Yy;
+};
+DATE D,Da;
+int sum=0;
+class food
+{
+char custname[20];
+int roomno;
+int itemno;
+char itemname[20];
+float price;
+public:
+void choices();
+void order();
+
+void getdata();
+void putdata();
+void billing();
+};
+food f1;
+
+
+class CUSTOMER
+{
+int bno;
+DATE d1;
+char name[20];
+char  mobno[10];
+int rno;
+
+public:
+
+	void cover();
+	void indata();
+	void outdata();
+	void booking();
+	void tour();
+	void total();
+};
+CUSTOMER s1;
+void cover3d();
+void room();
+void hall();
+void reservation();
+void CUSTOMER::cover()
+{
+clrscr();
+cover3d();
+cout<<"*****************************************************************************"<<endl;
+cout<<"*                                                                           *"<<endl;
+cout<<"*       *     * ***** *    ***** ***** *     * *****                        *"<<endl;
+cout<<"*       *     * *     *    *     *   * **   ** *                            *"<<endl;
+cout<<"*       *  *  * *     *    *     *   * * * * * *                            *"<<endl;
+cout<<"*       *  *  * ***** *    *     *   * *  *  * *****                        *"<<endl;
+cout<<"*       * * * * *     *    *     *   * *  *  * *                            *"<<endl;
+cout<<"*       * * * * *     *    *     *   * *     * *                            *"<<endl;
+cout<<"*        *   *  ***** **** ***** ***** *     * *****                        *"<<endl;
+cout<<"*                                                                           *"<<endl;
+cout<<"*							                   *"<<endl;
+cout<<"*****************************************************************************"<<endl;
+closegraph();
+getch();
+}
+
+void CUSTOMER::indata()
+{
+int i;
+	 ifstream ifile1;
+	 ofstream ofile1;
+	 ofile1.open("quesara.dat",ios::binary|ios::out);
+	 ifile1.open("quesara.dat",ios::binary|ios::in);
+  cout<<"\n\nENTER DATE OF CHECKIN.....(dd-mm-yy)\t\t";
+  cin>>d1.dd;
+  cin>>d1.mm;
+  cin>>d1.yy;
+
+  cout<<"ENTER YOUR FULL NAME\t\t\t\t";
+  gets(name);
+  cout<<"ENTER YOUR MOBILE NUMBER\t\t\t";
+    {
+    gets(mobno);
+	if(strlen(mobno)>10 || strlen(mobno)<10)
+	{
+	cout<<"\nPLEASE CHECK YOUR MOBILE NUMBER AGAIN AND PLEASE ENTER IT AGAIN\n";
+	gets(mobno);
+	cout<<"PLEASE PRESS ENTER TO CONTINUE";
+	getch();
+	}
+	else if(strlen(mobno)==10)
+	{
+	getch();
+	}
+    }
+    cout<<"\n*************************************************************\n";
+closegraph();
+getch();
+}
+
+void CUSTOMER::outdata()
+{
+	clrscr();
+	fstream file1;
+	file1.open("quesera.dat",ios::in);
+
+	cout<<"\nDATE YOU CHECKED IN IS...\t\t"<<d1.dd<<"/"<<d1.mm<<"/"<<d1.yy;
+	cout<<"\nYOUR NAME IS...\t\t\t\t";
+	puts(name);
+	cout<<"YOUR MOBILE NO. IS...\t\t\t";
+	puts(mobno);
+	cout<<"\n*************************************************************\n";
+	file1.close();
+}
+
+
+void CUSTOMER::booking()
+{
+
+int qw;
+
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(BROWN);
+cout<<"\nWELCOME TO RESORT QUE SERA...HOPE U'LL ENJOY YOUR STAY...\n"<<endl;
+
+  do
+  {
+	cout<<"\n1. BOOK A ROOM ";
+	cout<<"\n2. BOOK A HALL ";
+	cout<<"\n3. EXITING FROM BOOKING PANEL";
+	cout<<"\nENTER CHOICE \n";
+	cin>>qw;
+
+    switch(qw)
+    {
+case 1:
+	clrscr();
+	cout<<"\t\t\t*********************** \n";
+	cout<<"\t\t\t* BOOKING ROOM SECTION* \n";
+	cout<<"\t\t\t*********************** \n";
+	room();
+	cout<<"\n****************************************************"<<endl;
+	break;
+
+case 2:
+	clrscr();
+	cout<<"\t\t\t*********************** \n";
+	cout<<"\t\t\t* BOOKING HALL SECTION* \n";
+	cout<<"\t\t\t*********************** \n";
+	hall();
+	cout<<"\n****************************************************"<<endl;
+	break;
+case 3:
+	clrscr();
+	cout<<"\t\tEXITING FROM BOOKING PANEL...THANKU\n";
+	cout<<"****************************************************"<<endl;
+	break;
+default :
+
+	cout<<"ENTER VALID CHOICE(1-3)...";
+    }
+    cout<<"YOUR BILL TILL NOW IS  \t"<<sum;
+  }while(qw!=3);
+}
+float amtz;
+void CUSTOMER::tour()
+{
+	clrscr();
+	float pric1,pric2;
+	int c;
+	int desti;
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(MAGENTA);
+setcolor(0);
+//EGA_COLORS(EGA_RED);
+
+	cout<<"PLEASE CHOOSE YOUR TOUR:"<<endl<<endl;
+	cout<<"1.RUBY (FUA MALAKU,KUDAHUVANDOO,MALDIVES NATIONAL MUSEUM,MIRIHI ISLAND,\n\t GRAND FRIDAY MOSQUE,MULIAAGE)"<<endl<<endl;
+	cout<<"2.TOPAZ (FUA MALAKU,KUDAHUVANDOO,MALDIVES NATIONAL MUSEUM,MIRIHI ISLAND,\n \tGRAND FRIDAY MOSQUE)"<<endl<<endl;
+	cout<<"3.SAPPHIRE (FUA MALAKU,KUDAHUVANDOO,MALDIVES NATIONAL MUSEUM,MIRIHI ISLAND)"<<endl<<endl;
+	cout<<"ENTER CHOICE (1-3)";
+	cin>>desti;
+	cout<<"Your Choosen Tour Package is:\t";
+	switch(desti)
+	{
+	case 1:
+		cout<<"RUBY\n";
+		cout<<"\nYou will be toured around:\n";
+		cout<<"\nFUA MALAKU,KUDAHUVANDOO,MALVIDIVES NATIONAL MUSEUM,MIRIHI ISLAND,GRAND FRIDAY MOSQUE,MULIAAGE \n";
+		cout<<"\nYour touring charges will be:  Rs 2500  (this will be added to your main bill)";
+		pric1=2500;
+		break;
+	case 2:
+		cout<<"TOPAZ\n";
+		cout<<"\nYou will be toured around:\n";
+		cout<<"\nFUA MALAKU,KUDAHUVANDOO,MALVIDIVES NATIONAL MUSEUM,MIRIHI ISLAND,GRAND FRIDAY MOSQUE";
+		cout<<"\nYour touring charges will be:  Rs 2000  (this will be added to your main bill)";
+		pric1=2000;
+		break;
+	case 3:
+		cout<<"SAPPHIRE\n";
+		cout<<"You will be toured around\n";
+		cout<<"\nFUA MALAKU,KUDAHUVANDOO,MALVIDIVES NATIONAL MUSEUM,MIRIHI ISLAND";
+		cout<<"\nYour touring charges will be:  Rs 1500  (this will be added to your main bill)";
+		pric1=1500;
+		break;
+	default:
+		cout<<"Enter valid choice(1-3)";
+
+	}
+       //	closegraph();
+	getch();
+	clrscr();
+       /*	int q=DETECT,w;
+	initgraph(&q,&w,"c:\\turboc3\\bgi");
+	setbkcolor(MAGENTA);   */
+
+	cout<<"\n \t CHOOSE YOUR MODE OF CONVENCE  \n"<<endl;
+	cout<<" \t******************************  \n"<<endl;
+	cout<<"\n*****************************************";
+	cout<<"\n*          BOARD          *   CHARGES   *";
+	cout<<"\n*****************************************";
+	cout<<"\n*  1. JEEP(four sitter)   *    400      *";
+	cout<<"\n*  2. JEEP(seven-sitter)  *    700      *";
+	cout<<"\n*****************************************";
+	cout<<"\nENTER YOUR CHOICE";
+	cin>>c;
+
+	switch(c)
+	{
+	case 1:
+		{
+		cout<<"\nYOUR CHOOSEN CONVEYANCE IS : \t";
+		cout<<"\nJEEP(four sitter)";
+		cout<<"\nYOUR CONVEYANCE AMOUNT IS  Rs 400"<<endl;
+		pric2=400;
+		break;
+		}
+	case 2:
+		{
+		cout<<"\nYOUR CHOOSEN CONVEYANCE IS : \t";
+		cout<<"\nJEEP(seven sitter)";
+		cout<<"\nYOUR CONVEYANCE AMOUNT IS Rs 700"<<endl;
+		pric2=700;
+		break;
+		}
+	default:
+		cout<<"\nENTER VALID CHOICE(1-2)";
+	}
+	amtz=pric1+pric2;
+	cout<<"\nYOUR TOURING CHARGE(CHARGE+SERVICE T.) IS:\t"<<amtz;
+	sum=sum+amtz;
+	cout<<"\n\nYOUR TOTAL BILL TILL NOW IS\t"<<sum;
+
+closegraph();
+
+}
+
+
+///////////////////////////////////////////////////////////////////////
+int i=0;
+int total=0;
+float p1;
+void food::order()
+{
+  char ch='y';
+  fstream iof;
+  iof.open("food.dat",ios::out|ios::in|ios::binary);
+  f1.getdata();
+  iof.write((char*)&f1,sizeof(f1));
+	while(ch=='y'||ch=='Y')
+	{
+	cout<<"***************************************************"<<endl;
+	cout<<"*                      MENU                       *"<<endl;
+	cout<<"***************************************************"<<endl;
+	cout<<"*    ITEM                         *  CHARGES      *"<<endl;
+	cout<<"***************************************************"<<endl;
+	cout<<"* 1) FRITOS                       *  250          *"<<endl;
+	cout<<"* 2) COCUNUT PANINI               *  500          *"<<endl;
+	cout<<"* 3) PASTA                        *  900          *"<<endl;
+	cout<<"* 4) LASAGNA                      *  1200         *"<<endl;
+	cout<<"* 5) STEAK                        *  1500         *"<<endl;
+	cout<<"***************************************************"<<endl;
+	i++;
+	cout<<"\nENTER NUMBER OF THE ITEM YOU WISH TO ORDER(1-5)\n";
+	cin>>itemno;
+	cout<<"\nEnter name of the ordered item\n";
+	gets(itemname);
+	iof.write((char*)&f1,sizeof(f1));
+	iof.close();
+	fstream f13;
+	f13.open("CulDel.dat",ios::in);
+	if(itemno==1)
+	price=250;
+	else if(itemno==2)
+	price=500;
+	else if(itemno==3)
+	price=900;
+	else if(itemno==4)
+	price=1200;
+	else if(itemno==5)
+	price=1500;
+	else
+	{
+	cout<<"ENTER VALID CHOICE(1-3)...";
+	}
+	cout<<"\nThe item you ordered is as follows:  \n"
+	<<"1."<<"Item number:  "<<itemno<<"\n"
+	<<"2."<<"Item name:  "<<itemname<<"\n"
+	<<"3."<<"Price:  "<<p1<<"\n";
+	p1=price+(0.05*price);
+	cout<<"\nYour bill for this item is:  "<<p1<<endl;
+	sum=sum+p1;
+	cout<<"**************************************************"<<endl;
+	cout<<"\nWould you like to order another item? \n";
+	cin>>ch;
+	}
+
+	if(i>1)
+	{
+	total=p1;
+	total=total+p1;
+	cout<<"Your total bill (price+service tax) is:  "<<total<<endl;
+	sum=sum+total;
+	cout<<"**************************************************"<<endl;
+	}
+	cout<<"\n\n\nYOUR BILL TILL NOW IS\t" <<sum;
+	cout<<"\n************************************************"<<endl;
+
+}
+
+
+void food::choices()
+{
+int ch;
+    cout<<"\n Welcome to Que Sera's very own, Culinary Delights! \n  ";
+    cout<<"\nChoose according to your wishes:";
+    cout<<"\n 1. Order food ";
+    cout<<"\n 2. Make a reservation ";
+    cout<<"\n Enter your choice  "<<endl;
+    cin>>ch;
+    cout<<"*********************************************************"<<endl;
+	switch(ch)
+	{
+	case 1:
+		f1.order();
+		break;
+	case 2:
+		reservation();
+		break;
+	default:
+		cout<<"\nPlease choose one of the given options  ";
+	}
+}
+
+
+void food::getdata()
+{
+    int i;
+    ifstream i1;
+    ofstream o1;
+    i1.open("CulDel.dat",ios::binary||ios::in||ios::out);
+
+	cout<<"\nEnter date of checking into the hotel.....(dd-mm-yy)\n";
+	cin>>D.Dd;
+	cin>>D.Mm;
+	cin>>D.Yy;
+
+	cout<<"\nEnter your full name\n";
+	gets(custname);
+
+	cout<<"\nEnter your room number\n";
+	cin>>roomno;
+cout<<"\n"<<"***************************************************"<<endl;
+}
+
+
+void food::putdata()
+{
+	fstream f12;
+	f12.open("CulDel.dat",ios::in);
+
+	cout<<"\nDate you checked in:  "<<D.Dd<<"/"<<D.Mm<<"/"<<D.Yy<<endl;
+	cout<<"\nYour name is:  ";
+	puts(custname);
+	cout<<"\nYour room no:  ";
+	cout<<roomno<<endl;
+cout<<"****************************************************"<<endl;
+}
+void CUSTOMER::total()
+{
+	cout<<"YOUR TOTAL BILL IS "<<sum;
+}
+void main()
+{
+clrscr();
+int q;
+	s1.cover();
+	getch();
+	clrscr();
+	cout<<"\t\t\t\tWELCOME TO\n\n\n";
+	cout<<"***************************************************\n";
+	cout<<"*   ***** *   * *****    ***** ***** ***** *****  *\n";
+	cout<<"*   *   * *   * *        *     *     *   * *   *  *\n";
+	cout<<"*   *   * *   * *****    ***** ***** ***** *****  *\n";
+	cout<<"*   *  ** *   * *            * *     * *   *   *  *\n";
+	cout<<"*   ***** ***** *****    ***** ***** *   * *   *  *\n";
+	cout<<"*        *                                        *\n";
+	cout<<"***************************************************"<<endl;
+	cout<<"\nWelcome to Que Sera! \t";
+	cout<<"\nRanked as one of the best resorts in the world, Que Sera is situated in the beautiful escape of the Maldives. \t";
+	cout<<"\nWe welcome you to join us on this earthly paradise, and experience the chance of a lifetime. \t";
+	s1.indata();
+	s1.outdata();
+    do
+	{
+	 clrscr();
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(RED);
+
+	cout<<"1.BOOKING SECTION"<<endl;
+	cout<<"2.TOUR & TRAVEL SERVICE"<<endl;
+	cout<<"3.EATERY SECTION"<<endl;
+	cout<<"4.TOTAL BILL "<<endl;
+	cout<<"5.EXIT PANEL"<<endl;
+
+	cout<<"\nENTER CHOICE"<<endl<<endl;
+	cin>>q;
+	closegraph();
+	clrscr();
+
+    switch(q)
+	{
+case 1:
+	clrscr();
+	cout<<"\nWELCOME TO BOOKING ARENA"<<endl<<endl;
+	s1.booking();
+	cout<<"\n***************************************************"<<endl;
+	getch();
+	break;
+
+case 2:
+	clrscr();
+	cout<<"\nWELCOME TO OUR TOURS & TRAVEL SEVICE\n";
+	s1.tour();
+	cout<<"\n****************************************************"<<endl;
+	break;
+case 3:
+	cout<<"WELCOME TO OUR EATERY CORNER";
+	f1.choices();
+	f1.putdata();
+	cout<<"\nTHANK YOU FOR USING OUR SERVICE\n";
+	cout<<"\n****************************************************"<<endl;
+	break;
+case 4:
+	s1.total();
+	break;
+case 5:
+	clrscr();
+	cout<<endl<<endl;
+	cout<<endl<<"EXITING...."<<endl;
+	cout<<endl<<"HOPE U ENJOYED UR STAY AT QUE SERA"<<endl;
+	cout<<endl<<"DO VISIT AGAIN..."<<endl;
+	cout<<"\n****************************************************"<<endl;
+	break;
+
+
+default:
+	cout<<"\nENTER VALID CHOICE(1-3)";
+
+	}
+    }while(q!=5);
+getch();
+}
+///////////////////////FUNCTIONS///////////////////////////////
+//int sum=0;
+void room()
+{
+int room[50]={0};
+fstream fout;
+fout.open("avail.txt",ios::out|ios::in);
+float p;
+randomize();
+int rno,pr;
+int i=0,j=0;
+float tot=0;
+char ch='y';
+fstream iof;
+iof.open("booking.dat",ios::out|ios::in|ios::binary);
+s1.outdata();
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(RED);
+	while(ch=='y'||ch=='Y')
+{
+	int as;
+       if(j>=49)
+       {
+	   cout<<"room is not available\n";
+	   getch();
+	   goto L1;
+       }
+       else
+       {
+	cout<<"ROOMS AVAILABLE: "<<49-j;
+	if(room[i]==0)
+	 {
+	    room[i]=1;
+	    rno=49-j;
+	    i++;
+	    j++;
+	 }
+}
+       fout << j;
+       fout.close();
+
+       cout<<"\n************************************************;
+cout<<"*    ROOM       *  AC/NON-AC      *  CHARGES        *\n";
+cout<<"*************************************************n;
+cout<<"* 1) DELUX      * 1.WITH AC         *   850           *\n";
+cout<<"*                     * 2.WITHOUT AC  *   750           *\n";
+cout<<"*************************************************n;
+cout<<"* 2) PENTHOUSE  * 1.WITH AC     *   1050          *\n";
+cout<<"*               * 2.WITHOUT AC        *   950           *\n";
+cout<<"*************************************************n;
+cout<<"ENTER YOUR CHOICE\t";
+cout<<"(11,12,21,22):  ";
+cin>>as;
+switch(as)
+{
+	case 11:
+	     cout<<"\n YOUR CHOOSEN ROOM IS:  \t";
+	     cout<< " DELUX (WITH AC)\n";
+	     pr=850;
+	     cout<<" ROOM CHARGE IS \t"<<pr;
+	     break;
+	case 12:
+	     cout<<"\n YOUR CHOOSEN ROOM IS:  \t";
+	     cout<< " DELUX (WITHOUT AC)\n";
+	     pr=750;
+	     cout<<"ROOM CHARGE IS \t"<<pr;
+	     break;
+	case 21:
+	     cout<<"\n YOUR CHOOSEN ROOM IS:  \t";
+	     cout<< " PENTHOUSE (WITH AC)\n";
+	     pr=1050;
+	     break;
+	case 22:
+	     cout<<"\n YOUR CHOOSEN ROOM IS:  \t";
+	     cout<< " PENTHOUSE (WITHOUT AC)\n";
+	     pr=950;
+	     break;
+	default:
+	     cout<<"ENTER VALID CHOICE (11,12,21,22)";
+}
+	cout<<"\n YOUR ROOM NUMBER IS\t";
+	cout<<rno;
+	p=pr+(0.1*pr);
+	cout<<"\n YOUR ROOM CHARGE (ROOM CHARGE+SERVICE TAX) IS\t"<<p<<endl;
+	iof.write((char*)&s1,sizeof(s1));
+	tot=tot+p;
+cout<<"***********************************************************\n";
+	cout<<"\n WANT TO BOOK ANOTHER ROOM\n";
+	cin>>ch;
+}
+	L1:
+	cout<<"TOTAL CHARGE (ROOM CHARGE + SERVICE  TAX) IS:" <<tot<<"\n";
+	sum=sum+tot;
+closegraph();
+}
+
+
+void hall()
+{
+randomize();
+int hno,pri1;
+//int i=1;
+float zot=0,p;
+char ch='y';
+fstream iof2;
+iof2.open("booking.dat",ios::out|ios::in|ios::binary);
+s1.outdata();
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(MAGENTA);
+
+	while(ch=='y'||ch=='Y')
+	{
+	int as;
+       //	i++;
+	hno=random((5-1)+1);
+	cout<<"\n***************************************\n";
+	cout<<"*    TYPE             *   CHARGES     *\n";
+	cout<<"***************************************\n";
+	cout<<"* 1. CONEFERNCE HALL  *    2500       *\n";
+	cout<<"***************************************\n";
+	cout<<"* 2. PARTY HALL       *    2850       *\n";
+	cout<<"***************************************\n";
+	cout<<"\n ENTER CHOICE \n";
+	cin>>as;
+	switch(as)
+	{
+	 case 1:
+		cout<<"\nYOU HAVE CHOOSEN :\t";
+		cout<<"CONFERNCE HALL \n";
+		pri1=2500;
+		break;
+	 case 2:
+		cout<<"\nYOU HAVE CHOOSEN :\t";
+		cout<<"PARTY HALL \n";
+		pri1=2850;
+		break;
+	default:
+	     cout<<"ENTER VALID CHOICE (1-2)";
+	}
+	cout<<"\n YOUR HALL NUMBER IS\t";
+	cout<<hno;
+	p=pri1+(0.08*pri1);
+	cout<<"\n YOUR HALL CHARGE (HALL CHARGE+SERVICE TAX) IS\t"<<p<<endl;
+	iof2.write((char*)&s1,sizeof(s1));
+
+
+	zot=zot+p;
+	sum = sum + zot;
+	cout<<"\n WANT TO BOOK ANOTHER HALL\n";
+	cin>>ch;
+	}
+	cout<<"TOTAL CHARGE (ROOM CHARGE + SERVICE TAX) IS : "<<zot<<"\n";
+
+  // return tot;
+closegraph();
+}
+
+void cover3d()
+{
+int i;
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(BLUE);
+
+ for( i=1;i<=300;i++)
+ {
+ circle(i*2,i*2,25);
+ setcolor(3);
+ circle(2*i,i,25);
+ setcolor(7);
+ circle(i,i*3,25);
+ setcolor(9);
+ circle(3*i,i,25);
+ setcolor(11);
+ circle(2*i,3*i,25);
+ setcolor(13);
+ circle(3*i,2*i,25);
+ delay(10);
+ }
+getch();
+closegraph();
+}
+void reservation()
+{
+int d=DETECT,m;
+initgraph(&d,&m,"c:\\turboc3\\bgi");
+setbkcolor(BROWN);
+
+float pr;
+randomize();
+pr=random(1000-100+1)+100;
+
+char c='y',c2[15];
+fstream iof;
+iof.open("food.dat",ios::out|ios::in|ios::binary);
+	while(c=='y'||c=='Y')
+	{
+	f1.getdata();
+	cout<<"\nWhich of our restaurants would you like a reserve a table at?\n"
+	    <<"\n1.Mother's Pride"
+	    <<"\n2.Seaside View"
+	    <<"\n3.Pop Tate's";
+	cout<<"\nPlease enter your choice (enter the name)"<<endl;
+	gets(c2);
+	cout<<"\nPlease enter the date for reservation (dd-mm-yy)"<<"\n";
+	cin>>Da.dd;
+	cin>>Da.mm;
+	cin>>Da.yy;
+	iof.write((char*)&f1,sizeof(f1));
+
+	cout<<"\nWould you like to make another reservation?\n";
+	cin>>c;
+	}
+cout<<"*******************************************************"<<endl;
+cout<<"\nYour reservation is at:  "<<c2<<endl;
+cout<<"\nThe date of reservation is:  "<<Da.dd<<Da.mm<<Da.yy<<endl;
+cout<<"\nThe price of your reservation is:  "<<"Rs."<<pr<<endl;
+cout<<"********************************************************"<<endl;
+closegraph();
+}
